@@ -1,7 +1,14 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+  <div id="menu">
+    <router-link to="/">Inicio</router-link> 
+    <br><br>
+    <router-link to="/clasificacion">Clasificación</router-link>
+    <br><br>
+    <router-link to="/jornada">Jornada</router-link>
+    <br><br>
+    <router-link to="/equipos">Equipos</router-link>
+    <br><br>
+    <router-link to="/jugadores">Jugadores</router-link>
   </div>
   <router-view/>
 </template>
@@ -14,17 +21,18 @@
   text-align: center;
   color: #2c3e50;
 }
-
-#nav {
+#menu {
   padding: 30px;
+  width: 300px;
+  height: 250px;
+  position: absolute;
+  top: 100px;
 }
-
-#nav a {
+#menu a {
   font-weight: bold;
-  color: #2c3e50;
+  color: black;
 }
-
-#nav a.router-link-exact-active {
-  color: #42b983;
+#menu a.router-link-exact-active {
+  color: red;
 }
 </style>
