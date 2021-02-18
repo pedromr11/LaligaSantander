@@ -11,15 +11,15 @@
         <td>Puntos</td> 
       </tr>
       <tr v-for="(equipo, puntos) in laliga" :key="puntos">
-        <td @click="obtenerJugadores">{{equipo.name}}</td>
+        <td @click="obtenerJugadores(equipo.name)">{{equipo.name}}</td>
         <td>{{equipo.points}}</td>
       </tr>
     </table>
   </div>
 
-  <div class="datos">
-
-    <DatosEquipo/>
+  <div class="datos" v-if="gol != ''">
+    
+    <DatosEquipo :nombreJugadores="gol" />
 
   </div>
 
@@ -34,7 +34,8 @@ import DatosEquipo from '@/components/DatosEquipo.vue';
 export default {
     data() {
         return {
-            laliga: []
+            laliga: [] ,
+            gol: ""
         }
     },
     mounted() {
@@ -45,13 +46,13 @@ export default {
             })
         
     },
-    dato: 'Datos',
     components: {
       DatosEquipo
     },
     methods: {
-      obtenerJugadores: function(){
-        
+      obtenerJugadores: function(nombreEquipo){
+       this.gol = nombreEquipo;
+
       }
     }    
 }
