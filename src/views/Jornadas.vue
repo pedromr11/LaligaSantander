@@ -4,12 +4,18 @@
   </div>
   
   <div>
-  <select name="menu" >
+  <select name="menu" v-model="jorn">
     
     <option> ... </option>
-    <option v-for="(jornada) in jornadas" :key="jornada" value= "jornada.round" @click="obtenerJornadas(jornada.round)"> {{jornada.round}}  </option>
+    <option v-for="(jornada, index) in jornadas" :key="index" :value= jornada.round > {{jornada.round}}  </option>
 
   </select>
+  </div>
+
+  <div>
+
+    <DatosJornadas :jor="jorn" />
+
   </div>
 
 </template>
@@ -26,21 +32,24 @@ export default {
       jornadas: [],
       jorn: ""
     }
-  },
-  mounted() {
-    axios
-      .get('http://localhost:3000/matches')
-      .then(response => {
-        this.jornadas = response.data
-      })
-  },
+  },  
   components: {
     DatosJornadas
   },
   methods: {
     obtenerJornadas: function(numeroJornada){
       this.jorn = numeroJornada;
+    },
+    array(){
+      axios
+      .get('http://localhost:3000/matches')
+      .then(response => {
+        this.jornadas = response.data
+      })
     }
+  },
+  created(){
+    this.array();
   }
 }
 </script>

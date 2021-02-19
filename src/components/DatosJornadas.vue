@@ -1,11 +1,8 @@
 <template>
     
-    <h2>Jornada:</h2>
-
     <ul v-for="(jornadas, jorna) in jornada" :key="jorna">
-        <li v-if="this.jor == jornadas.round">{{jornadas.round}}</li>
-    </ul> 
-
+        <li v-if="this.jor == jornadas.round">{{jornadas.team1}} {{jornadas.score}} {{jornadas.team2}}</li>
+    </ul>
 
 </template>
 
@@ -23,12 +20,25 @@ export default {
             jornada: []
         }
     },
-    mounted() {
-        axios
-            .get('http://localhost:3000/matches')
+    methods: {
+        conseguirJornadas(valor){
+            axios
+            .get('http://localhost:3000/matches?round='+ valor)
             .then(response => {
                 this.jornada = response.data
             })
+        }
+    },
+    watch: {
+        jor(valorNuevo){
+            this.jornada = this.conseguirJornadas(valorNuevo);
+        }
     }
 }
 </script>
+
+<style>
+li{
+    list-style-type: none;
+}
+</style>
