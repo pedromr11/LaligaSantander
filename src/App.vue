@@ -6,6 +6,8 @@
     <br><br>
     <router-link to="/jornada">Jornada</router-link>
     <br><br>
+    <router-link to="/nuevopartido">Nuevo Partido</router-link>
+    <br><br>
     <router-link to="/equipos">Equipos</router-link>
     <br><br>
     <router-link to="/jugadores">Jugadores</router-link>

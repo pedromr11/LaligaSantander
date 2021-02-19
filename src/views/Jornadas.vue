@@ -13,9 +13,7 @@
   </div>
 
   <div>
-
     <DatosJornadas :jor="jorn" />
-
   </div>
 
 </template>
