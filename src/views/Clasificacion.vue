@@ -77,8 +77,7 @@ th, td {
 
 .datos{
     margin-left: 60%;
-    width: 15%;
-    
+    width: 15%;    
 }
 
 </style>
