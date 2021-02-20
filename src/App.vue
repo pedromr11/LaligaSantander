@@ -11,6 +11,10 @@
     <router-link to="/equipos">Equipos</router-link>
     <br><br>
     <router-link to="/jugadores">Jugadores</router-link>
+    <br><br>
+    <router-link to="/nuevojugador">Nuevo Jugador</router-link>
+    <br><br>
+    <router-link to="/eliminarjugador">Eliminar Jugador</router-link>
   </div>
   <router-view/>
 </template>

@@ -28,6 +28,12 @@
     
   </div>
 
+  <input class="boton" type="submit" value="Nuevo jugador">
+
+  <div>
+    <NewJugador />
+  </div>
+
   
 
 </template>
@@ -36,6 +42,9 @@
 <script>
 
 import axios from "axios";
+
+import NewJugador from '@/components/NewJugador.vue';
+
 export default {
   data(){
     return {
@@ -56,12 +65,15 @@ export default {
           this.jugadores = response.data
         })
 
+    },
+    components: {
+      NewJugador
     }
 }
 </script>
 
 
-<style>
+<style scoped>
 
 .tabla{
   position: absolute;
@@ -81,5 +93,14 @@ th, td {
 li{
     list-style-type: none;
 }
+
+.boton{
+  position: absolute;
+  left: 70%;
+  width: 200px;
+  height: 50px;
+}
+
+
 
 </style>

@@ -35,7 +35,20 @@ const routes = [
     name: 'Jugadores',
     
     component: () => import('../views/Jugadores.vue')
+  },
+  {
+    path: '/nuevojugador',
+    name: 'Nuevo Jugador',
+    
+    component: () => import('../views/NuevoJugador.vue')
+  },
+  {
+    path: '/eliminarjugador',
+    name: 'Eliminar Jugador',
+    
+    component: () => import('../views/EliminarJugador.vue')
   }
+
 ]
 
 const router = createRouter({
