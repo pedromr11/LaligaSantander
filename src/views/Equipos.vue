@@ -28,10 +28,10 @@
     
   </div>
 
-  <input class="boton" type="submit" value="Nuevo jugador">
+  <input class="boton" type="submit" value="Nuevo jugador" @click="showHide">
 
-  <div>
-    <NewJugador />
+  <div v-show="show">
+    <NewJugador/>
   </div>
 
   
@@ -45,30 +45,37 @@ import axios from "axios";
 
 import NewJugador from '@/components/NewJugador.vue';
 
+
 export default {
   data(){
     return {
       equipos: [],
-      jugadores: []
+      jugadores: [],
+      show: false
     }
   },
-    created() {
-      axios
-        .get('http://localhost:3000/clubs')
-        .then(response => {
-        this.equipos = response.data;
-      }),
+  created() {
+     axios
+      .get('http://localhost:3000/clubs')
+      .then(response => {
+      this.equipos = response.data;
+    }),
 
-      axios
-        .get('http://localhost:3000/players')
-        .then(response => {
-          this.jugadores = response.data
-        })
+    axios
+      .get('http://localhost:3000/players')
+      .then(response => {
+        this.jugadores = response.data
+      })
 
-    },
-    components: {
-      NewJugador
+  },
+  components: {
+    NewJugador
+  },
+  methods: {
+    showHide: function(){
+      this.show = !this.show;
     }
+  }
 }
 </script>
 
@@ -100,7 +107,4 @@ li{
   width: 200px;
   height: 50px;
 }
-
-
-
 </style>
