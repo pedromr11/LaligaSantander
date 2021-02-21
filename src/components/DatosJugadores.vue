@@ -17,7 +17,7 @@
         <label  v-if="this.ocultar == jugador.name && this.nombreJugadores == jugador.team">Goles: </label><input type="text" name="goles" id="goles"  v-if="this.ocultar == jugador.name && this.nombreJugadores == jugador.team" v-model="var1">        
         <input type="submit" name="enviar" value="enviar"  v-if="this.ocultar == jugador.name && this.nombreJugadores == jugador.team" @click="enviar">
         <br><br>
-        <input type="submit" name="borrar" value="borrar jugador"  v-if="this.ocultar == jugador.name && this.nombreJugadores == jugador.team">
+        <input type="submit" name="borrar" value="borrar jugador"  v-if="this.ocultar == jugador.name && this.nombreJugadores == jugador.team" @click="borrar">
         </span>
     </div> 
 
@@ -65,6 +65,9 @@ export default {
                 scores: parseInt(this.var1) + parseInt(this.goles)
             };
             axios.put('http://localhost:3000/players/'+this.id, post)
+        },
+        borrar(){
+            axios.delete('http://localhost:3000/players/'+this.id)
         }
     }
 }
