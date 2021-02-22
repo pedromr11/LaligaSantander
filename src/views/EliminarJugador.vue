@@ -12,12 +12,14 @@
                 <option v-for="(elemento, index) in clubs" :key="index" @click="informacion(elemento.name)">{{elemento.name}} </option>
             </select>
             <br><br><br>
-            
+          
             Jugadores: 
             <select>
-                <option>...</option>
-                <option v-for="(elemento, index) in jugadores" :key="index">{{elemento.name}} </option>
-            </select>
+              <option>...</option>
+              <span v-for="(elemento, index) in jugadores" :key="index">                
+                <option v-if="this.jugadoresEquipo == elemento.team">{{elemento.name}} </option>
+              </span>
+            </select> 
         </fieldset>
   </form>
 
@@ -32,7 +34,7 @@ export default {
         return{
             clubs: [],
             jugadores: [],
-            equipo: ""
+            jugadoresEquipo: []
         }
   },
   methods: {
@@ -50,8 +52,8 @@ export default {
           this.jugadores = response.data
           })
     },
-    informacion: function(nombreEquipo){
-          this.equipo = nombreEquipo;
+    informacion: function(players){
+      this.jugadoresEquipo = players
     }
   },
   created(){
