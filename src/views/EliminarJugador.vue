@@ -7,19 +7,14 @@
   <form class="formulario">
         <fieldset>         
             <br>
-            Equipo: <select>
+            Equipo: <select v-model="name">
                 <option>...</option>
-                <option v-for="(elemento, index) in clubs" :key="index" @click="informacion(elemento.name)">{{elemento.name}} </option>
+                <option :value="elemento.name" v-for="(elemento, index) in clubs" :key="index" >{{elemento.name}} </option>
             </select>
             <br><br><br>
+
+            <Eliminar :nombreTeam="name"/>
           
-            Jugadores: 
-            <select>
-              <option>...</option>
-              <span v-for="(elemento, index) in jugadores" :key="index">                
-                <option v-if="this.jugadoresEquipo == elemento.team">{{elemento.name}} </option>
-              </span>
-            </select> 
         </fieldset>
   </form>
 
@@ -29,12 +24,18 @@
 
 import axios from "axios";
 
+import Eliminar from '@/components/Eliminar.vue';
+
 export default {
   data() {
         return{
             clubs: [],
             jugadores: [],
-            jugadoresEquipo: []
+            id: '',
+            name:'',
+            team: '',
+            scores: ''
+
         }
   },
   methods: {
@@ -51,15 +52,15 @@ export default {
           .then(response => {
           this.jugadores = response.data
           })
-    },
-    informacion: function(players){
-      this.jugadoresEquipo = players
     }
   },
   created(){
         this.obtenerClubs();
         this.obtenerJugadores();
-  }
+  },
+  components: {
+      Eliminar
+    },
 }
 </script>
 
