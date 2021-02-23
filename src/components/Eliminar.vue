@@ -1,9 +1,11 @@
 <template>
     
     <div>
-        <select v-model="name">
-            <option :value="elemento.name" v-for="(elemento, index) in jugadores" :key="index" >{{elemento.name}}</option>
+        <select v-model="name" >
+            <option :value="elemento.name" v-for="(elemento, index) in jugadores" :key="index">{{elemento.name}}</option>
         </select>
+        <br><br>
+        <input type="submit" name="borrar" value="borrar jugador" @click="borrar(name)">
     </div>
 </template>
 
@@ -27,6 +29,14 @@ export default {
             .then(response => {
                 this.jugadores = response.data;
             })
+        },
+        borrar(variable){
+            
+            this.jugadores.forEach(element => {
+                if (element == variable) {
+                    axios.delete('http://localhost:3000/players?name='+ element)
+                }
+            });            
         }
     },
     watch: {
